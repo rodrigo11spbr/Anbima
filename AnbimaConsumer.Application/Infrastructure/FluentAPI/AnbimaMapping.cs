@@ -1,9 +1,11 @@
 ﻿using AnbimaConsumer.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AnbimaConsumer.Application.Infrastructure.FluentAPI
 {
+    [ExcludeFromCodeCoverage]
     public class AnbimaMapping : IEntityTypeConfiguration<Anbima>
     {
         public void Configure(EntityTypeBuilder<Anbima> builder)

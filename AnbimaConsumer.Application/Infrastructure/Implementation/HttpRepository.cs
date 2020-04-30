@@ -1,10 +1,12 @@
 ﻿using AnbimaConsumer.Application.Infrastructure.Interfaces;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace AnbimaConsumer.Application.Infrastructure.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class HttpRepository : IHttpRepository
     {
         public HttpRepository(ILogger<HttpRepository> logger)

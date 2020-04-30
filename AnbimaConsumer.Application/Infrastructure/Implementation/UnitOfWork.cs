@@ -1,8 +1,10 @@
 ﻿using AnbimaConsumer.Application.Infrastructure.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace AnbimaConsumer.Application.Infrastructure.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(EntityContext context)

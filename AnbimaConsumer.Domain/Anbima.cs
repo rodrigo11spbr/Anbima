@@ -29,14 +29,15 @@ namespace AnbimaConsumer.Domain
 
             foreach (string line in file)
             {
-                Anbima anbima = new Anbima();
-
                 string[] columns = line.Split('@');
 
-                anbima.ID = Guid.NewGuid();
+                Anbima anbima = new Anbima
+                {
+                    ID = Guid.NewGuid()
+                };
 
                 string title = columns[0];
-                if (!title.Contains("--") && !string.IsNullOrEmpty(title))
+                if (!title.Contains("--") || !string.IsNullOrEmpty(title))
                 {
                     anbima.Title = columns[0];
                 }
@@ -120,7 +121,7 @@ namespace AnbimaConsumer.Domain
                 }
 
                 string status = columns[14];
-                if (!status.Contains("--") && !string.IsNullOrEmpty(title))
+                if (!status.Contains("--") || !string.IsNullOrEmpty(title))
                 {
                     anbima.Status = status;
                 }

@@ -44,7 +44,7 @@ namespace AnbimaConsumer.Application
                 throw new ArgumentOutOfRangeException("Anbima don't have sufficient lines");
             }
 
-            anbimaLines = anbimaLines.Where(x => !x.StartsWith("\r") && !string.IsNullOrEmpty(x)).ToArray();
+            anbimaLines = anbimaLines.Where(x => !string.IsNullOrEmpty(x)).ToArray();
             anbimaLines = anbimaLines.Skip(2).ToArray(); // Skiping title and headers
 
             IEnumerable<Anbima> buildedAnbima = new Anbima().Build(anbimaLines);

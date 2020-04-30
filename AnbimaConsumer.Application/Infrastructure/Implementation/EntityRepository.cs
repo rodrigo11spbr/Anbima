@@ -2,12 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace AnbimaConsumer.Application.Infrastructure.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class EntityRepository<T> : IEntityRepository<T> where T : class, new()
     {
         public EntityRepository(IUnitOfWork unitOfWork)

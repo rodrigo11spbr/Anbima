@@ -2,9 +2,11 @@
 using AnbimaConsumer.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AnbimaConsumer.Application.Infrastructure.Implementation
 {
+    [ExcludeFromCodeCoverage]
     public class EntityContext : DbContext
     {
         public EntityContext(IConfiguration configuration)
