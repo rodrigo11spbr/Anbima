@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -28,6 +28,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\AnbimaConsumer.API\AnbimaConsumer.API.csproj" />
     <ProjectReference Include="..\AnbimaConsumer.Application\AnbimaConsumer.Application.csproj" />
     <ProjectReference Include="..\AnbimaConsumer.Domain\AnbimaConsumer.Domain.csproj" />
   </ItemGroup>
