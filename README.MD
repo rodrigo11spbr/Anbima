@@ -6,7 +6,8 @@
 - Docker
 - Hexagonal Architecture
 - EF Core Sql Server
-- Repository and Unit Of Work Pattern
+- Repository and Unit of Work Pattern
+- SOLID and Inversion of Control
 
 ### How to Start
 
