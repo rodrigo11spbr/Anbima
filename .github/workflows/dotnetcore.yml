@@ -26,4 +26,4 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true
