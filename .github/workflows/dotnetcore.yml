@@ -1,8 +1,9 @@
 name: dotnet Testing
-
 on:
-  [push]:
-
+  push:
+    branches: 
+      - master
+      - feature/*
 jobs:
   test:
     name: test dotnet and publish code coverage
