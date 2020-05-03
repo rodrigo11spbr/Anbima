@@ -7,11 +7,7 @@ on:
 jobs:
   test:
     name: test dotnet and publish code coverage
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, windows-2019, macos-10.15]
-        
+    runs-on: windows-2019  
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -26,4 +22,4 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true
+      run: dotnet test --no-restore --verbosity normal --collect:"CodeCoverage"
