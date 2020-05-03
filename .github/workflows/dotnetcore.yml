@@ -1,0 +1,28 @@
+name: dotnet Testing
+
+on:
+  [push]:
+
+jobs:
+  test:
+    name: test dotnet and publish code coverage
+    runs-on: ${{ matrix.is }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, windows-2019, macos-10.15]
+        
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+
+    - name: restoring dependencies
+      run: dotnet restore
+      
+    - name: building
+      run: dotnet build --configuration Development --no-restore
+      
+    - name: Testing
+      run: dotnet test --no-restore --verbosity normal
