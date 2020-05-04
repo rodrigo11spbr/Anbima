@@ -21,9 +21,11 @@ jobs:
     steps:
       - name: restoring dependencies
         run: dotnet restore
-      
-      - name: building
+      - name: build
         run: dotnet build --configuration Debug --no-restore
-      
+  Test:
+    name: building
+    runs-on: ubuntu-18.04
+    steps:
       - name: Testing
         run: dotnet test AnbimaConsumer/AnbimaConsumer.csproj --no-build --no-restore
