@@ -26,7 +26,7 @@ jobs:
       
     - uses: codecov/codecov-action@v1
       with:
-        file: .\AnbimaConsumer.UnitTest\result.xml
+        file: ./AnbimaConsumer.UnitTest/result.xml
         flags: backend
         name: publish code coverage
         fail_ci_if_error: true
