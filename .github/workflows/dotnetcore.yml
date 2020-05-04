@@ -18,6 +18,6 @@ jobs:
     - name: Restore
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Develop --no-restore
+      run: dotnet build --configuration Debug --no-restore
     - name: Test
-      run: dotnet test --no-restore --no-build
+      run: dotnet test --no-build --no-restore --verbosity normal
