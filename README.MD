@@ -1,5 +1,5 @@
 # Anbima Consumer API
-
+![dotnet Testing](https://github.com/rodrigo11spbr/Anbima/workflows/dotnet%20Testing/badge.svg?branch=master)
 #### Description
 - .Net Core 3.1
 - Swagger
