@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     name: setup .net core 3.1 on windows 2019
-    runs-on: windows-2019  
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -22,11 +22,4 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test --no-build --no-restore --verbosity normal --logger:"nunit;LogFilePath=result.xml"
-      
-    - uses: codecov/codecov-action@v1
-      with:
-        file: ./AnbimaConsumer.UnitTest/result.xml
-        flags: backend
-        name: publish code coverage
-        fail_ci_if_error: true
+      run: dotnet test --no-build --no-restore
