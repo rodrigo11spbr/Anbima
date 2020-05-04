@@ -1,12 +1,8 @@
 name: dotnet Testing
-on:
-  push:
-    branches: 
-      - master
-      - feature/*
+on: push
 jobs:
-  test:
-    name: setup .net core 3.1 on windows 2019
+  Setup:
+    name: Setup for .net core 3.1
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -14,12 +10,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-        
-    - name: restoring dependencies
-      run: dotnet restore
+  Build:
+    name: Build and test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: restoring dependencies
+        run: dotnet restore
       
-    - name: building
-      run: dotnet build --configuration Debug --no-restore
+      - name: building
+        run: dotnet build --configuration Debug --no-restore
       
-    - name: Testing
-      run: dotnet test --no-build --no-restore
+      - name: Testing
+        run: dotnet test --no-build --no-restore
