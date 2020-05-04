@@ -22,11 +22,11 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true --collect:"Code Coverage" -output:".\anbima_coverage.xml"
+      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true  /p:CoverletOutput='./result.json'
       
     - uses: codecov/codecov-action@v1
       with:
-        file: .\anbima_coverage.xml # optional
+        file: ./result.json # optional
         flags: unittests # optional
         name: publish code coverage # optional
         fail_ci_if_error: true # optional (default = false)
