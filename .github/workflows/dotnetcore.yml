@@ -1,5 +1,10 @@
 name: dotnet Testing
-on: push
+on:
+  push:
+    branches:
+    - master
+    - feature/*
+    - hotfix/*
 jobs:
   Setup:
     name: Setup for .net core 3.1
