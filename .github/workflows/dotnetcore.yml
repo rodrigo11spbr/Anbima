@@ -22,7 +22,7 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true  /p:CoverletOutput='./result.json'
+      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true --collect:"Code Coverage" /p:CoverletOutput='./result.json'
       
     - uses: codecov/codecov-action@v1
       with:
