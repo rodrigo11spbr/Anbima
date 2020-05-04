@@ -21,4 +21,4 @@ jobs:
         run: dotnet build --configuration Debug --no-restore
       
       - name: Testing
-        run: dotnet test --no-build --no-restore
+        run: dotnet test AnbimaConsumer/AnbimaConsumer.csproj --no-build --no-restore
