@@ -22,7 +22,7 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test /p:CollectCoverage=true --logger trx;LogFileName=UnitTests.trx --collect:XPlat Code Coverage
+      run: dotnet test /p:CollectCoverage=true --logger xml;LogFileName=UnitTests.xml --collect:XPlat Code Coverage
       
     - uses: codecov/codecov-action@v1
       with:
