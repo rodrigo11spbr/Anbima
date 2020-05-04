@@ -1,12 +1,14 @@
 codecov:
   require_ci_to_pass: yes
-   fixes:
-  - "io/github/config4k::src/main/io.github.config4k"
+  
 
 coverage:
   precision: 2
   round: down
-  range: "5...100"
+  range: "70...100"
+  fixes:
+  - "io/github/config4k::src/main/io.github.config4k"
+  max_report_age: off
  
 
 parsers:
