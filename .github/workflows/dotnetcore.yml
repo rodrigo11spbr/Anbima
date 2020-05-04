@@ -26,7 +26,7 @@ jobs:
       
     - uses: codecov/codecov-action@v1
       with:
-        file: ./coverage.xml # optional
+        file: ./*.coverage.xml # optional
         flags: unittests # optional
         name: publish code coverage # optional
         fail_ci_if_error: true # optional (default = false)
