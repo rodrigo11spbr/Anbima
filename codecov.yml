@@ -8,6 +8,7 @@ coverage:
   range: "70...100"
   fixes:
   - "io/github/config4k::src/main/io.github.config4k"
+  - "before/test-*::after/"
   max_report_age: off
  
 
