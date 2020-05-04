@@ -22,11 +22,11 @@ jobs:
       run: dotnet build --configuration Debug --no-restore
       
     - name: Testing
-      run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=BuildReports/Coverage/ /p:CoverletOutputFormat=cobertura --logger 'xunit;LogFileName=TestResults.xml' 
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutput=/var/jenkins_home/workspace/Build/TestResults/ /p:CoverletOutputFormat=cobertura --logger trx;LogFileName=UnitTests.trx --collect:XPlat Code Coverage
       
     - uses: codecov/codecov-action@v1
       with:
-        file: ./TestResults.xml
+        file: ./*.coverage
         flags: backend
         name: publish code coverage
         fail_ci_if_error: true
