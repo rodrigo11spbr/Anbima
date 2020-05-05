@@ -5,6 +5,8 @@ on:
     - master
     - feature/*
     - hotfix/*
+    tags:
+      - v*
 jobs:
   dotnet-step:
     name: dotnet test
@@ -28,6 +30,7 @@ jobs:
       env:
         IMAGE_NAME: anbima_consumer_api
       runs-on: ubuntu-latest
+       # Publish `v1.2.3` tags as releases.
       
       steps:
         - uses: actions/checkout@v2
