@@ -27,7 +27,7 @@ jobs:
       # Ensure test job passes before pushing image.
       needs: dotnet-step
       env:
-        IMAGE_NAME: anbima
+        IMAGE_NAME: image
       runs-on: ubuntu-18.04
       if: github.event_name == 'push'
 
