@@ -26,7 +26,7 @@ jobs:
     name: docker publish
     env:
       image_name: anbima_consumer_api
-      
+      image_id: docker.pkg.github.com/${{ github.repository }}/$image_name
     needs: dotnet-step
     runs-on: ubuntu-18.04
     steps:
@@ -38,9 +38,7 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - name: Push image
-        run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$image_name
-
-          docker tag image $image_name:latest
-          docker push $image_name:latest
+      - name: tag
+        run: docker tag image $image_id:latest
+      - name: push
+        run:  docker push $image_id:latest
