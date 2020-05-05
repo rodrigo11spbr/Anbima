@@ -27,5 +27,6 @@ jobs:
     name: build docker and publish
     needs: Setup
     steps:
+      - uses: actions/checkout@v2
       - name: Build docker image
       - run: echo "not implmented"
