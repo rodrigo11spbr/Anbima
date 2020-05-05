@@ -7,7 +7,7 @@ on:
     - hotfix/*
 jobs:
   dotnet-step:
-    name: build and test
+    name: dotnet test
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
       run: dotnet test --no-build --no-restore --verbosity normal
       
   docker-step:
-    name: build docker image and publish
+    name: docker publish
     needs: dotnet-step
     runs-on: ubuntu-18.04
     steps:
