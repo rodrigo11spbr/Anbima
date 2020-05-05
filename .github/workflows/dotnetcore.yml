@@ -23,9 +23,9 @@ jobs:
       run: dotnet test --no-build --no-restore --verbosity normal
       
   Docker:
-    runs-on: ubuntu-18.04
-    name: build docker and publish
     needs: Setup
+    name: build docker and publish
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - name: Build docker image
