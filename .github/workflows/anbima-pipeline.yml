@@ -6,8 +6,8 @@ on:
     - feature/*
     - hotfix/*
 jobs:
-  Setup:
-    name: Build and Test
+  dotnet-step:
+    name: build and test
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -15,17 +15,18 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-    - name: Restore
+    - name: restore
       run: dotnet restore
-    - name: Build
+    - name: build
       run: dotnet build --configuration Debug --no-restore
-    - name: Test
+    - name: test
       run: dotnet test --no-build --no-restore --verbosity normal
       
-  build:
-    needs: Setup
+  docker-step:
+    name: build docker image and publish
+    needs: dotnet-step
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: create docker image
       run: docker build . --file Dockerfile --tag anbima-consumer-api:$(date +%s)
