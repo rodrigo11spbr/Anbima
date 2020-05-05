@@ -22,26 +22,40 @@ jobs:
     - name: test
       run: dotnet test --no-build --no-restore --verbosity normal
       
-  docker-step:
-    name: docker publish
-    env:
-      image_name: anbima_consumer_api
-      image_id: docker.pkg.github.com/${{ github.repository }}/$image_name
-    needs: dotnet-step
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
+  push:
+    # Ensure test job passes before pushing image.
+      needs: dotnet-step
 
-      - name: Build image
-        run: docker build . --file Dockerfile --tag $image_name
-
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      runs-on: ubuntu-latest
       
-      - name: to lowercase
-        run: image_id=$(echo $image_id | tr '[A-Z]' '[a-z]')
-         
-      - name: tag
-        run: docker tag image $image_id:latest
-      - name: push
-        run:  docker push $image_id:latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Build image
+          run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+        - name: Log into registry
+          run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+        - name: Push image
+          run: |
+            IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          
+            # Change all uppercase to lowercase
+            IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+            # Strip git ref prefix from version
+            VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+            # Strip "v" prefix from tag name
+            [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+            # Use Docker `latest` tag convention
+            [ "$VERSION" == "master" ] && VERSION=latest
+
+            echo IMAGE_ID=$IMAGE_ID
+            echo VERSION=$VERSION
+
+            docker tag image $IMAGE_ID:$VERSION
+            docker push $IMAGE_ID:$VERSION
+
