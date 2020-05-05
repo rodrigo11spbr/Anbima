@@ -41,14 +41,6 @@ jobs:
       - name: Push image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$image_name
-          
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          echo IMAGE_ID=$IMAGE_ID
-
-          docker tag image $IMAGE_ID:latest
-          docker push $IMAGE_ID:latest
+          docker tag image $image_name:latest
+          docker push $image_name:latest
