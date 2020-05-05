@@ -25,7 +25,8 @@ jobs:
   push:
     # Ensure test job passes before pushing image.
       needs: dotnet-step
-
+      env:
+        IMAGE_NAME: anbima_consumer_api
       runs-on: ubuntu-latest
       
       steps:
